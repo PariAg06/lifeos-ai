@@ -35,5 +35,16 @@ public class StorageService {
 
         return storageKey;
     }
+
+    public Path load(String storageKey) {
+
+        Path file = rootLocation.resolve(storageKey).normalize();
+
+        if (!file.startsWith(rootLocation.normalize())) {
+            throw new IllegalArgumentException("Invalid storage key");
+        }
+
+        return file;
+    }
 }
 
